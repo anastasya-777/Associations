@@ -4,6 +4,17 @@
 
 ## Данные в таблицах:
 
+<img width="738" alt="image" src="https://github.com/user-attachments/assets/1f62be6b-9f94-4fae-81aa-590365276730">
+
+<img width="787" alt="image" src="https://github.com/user-attachments/assets/b8500f48-65da-4e76-8a10-402942ea42af">
+
+<img width="779" alt="image" src="https://github.com/user-attachments/assets/2eff016f-6fc2-461b-bb48-04b3daffbe79">
+
+<img width="770" alt="image" src="https://github.com/user-attachments/assets/91233b01-e478-47fb-a1dd-3c761d25e5ad">
+
+<img width="769" alt="image" src="https://github.com/user-attachments/assets/9145b1c9-392a-4149-9f68-5c4059b31277">
+
+
 ## Запросы по заданию:
 
 1. Вывести названия аудиторий, в которых читает лекции преподаватель “Edward Hopper”.
@@ -82,8 +93,19 @@
 6. Вывести полные имена преподавателей факультета “Computer Science”, которые не курируют группы кафедры “Software Development”.
 
 ### Скрипт запроса:
+* SELECT DISTINCT t.Name, t.Surname
+* FROM Teachers t
+* JOIN Deans d ON t.Id = d.TeacherId
+* JOIN Faculties f ON d.Id = f.DeanId
+* LEFT JOIN GroupsCurators gc ON t.Id = gc.CuratorId
+* LEFT JOIN Groups g ON gc.GroupId = g.Id
+* LEFT JOIN Departments dpt ON g.DepartmentId = dpt.Id
+* WHERE f.Name = N'Computer Science'
+* AND (dpt.Name <> N'Software Development' OR dpt.Name IS NULL);
 
 ### Результат:
+
+<img width="710" alt="image" src="https://github.com/user-attachments/assets/12924b0c-6bcf-435a-8909-94e157540919">
 
 7. Вывести список номеров всех корпусов, которые имеются в таблицах факультетов, кафедр и аудиторий.
 
